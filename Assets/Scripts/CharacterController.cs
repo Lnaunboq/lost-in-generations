@@ -11,7 +11,8 @@ using UnityEngine;
 
 public class CharacterController : MonoBehaviour
 {
-
+    public Animation animations;
+    
     public float speed = 10.0f;
     private float translation;
     private float straffe;
@@ -21,6 +22,7 @@ public class CharacterController : MonoBehaviour
     {
         // turn off the cursor
         Cursor.lockState = CursorLockMode.Locked;
+        animations = gameObject.GetComponent<Animation>();
     }
 
     // Update is called once per frame
@@ -30,6 +32,12 @@ public class CharacterController : MonoBehaviour
         // You can furthor set it on Unity. (Edit, Project Settings, Input)
         translation = Input.GetAxis("Vertical") * speed * Time.deltaTime;
         straffe = Input.GetAxis("Horizontal") * speed * Time.deltaTime;
+
+        if (Input.GetKey(KeyCode.Z))
+        {
+            //animations.Play("walk");
+        }
+
         transform.Translate(straffe, 0, translation);
 
         if (Input.GetKeyDown("escape"))
